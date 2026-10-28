@@ -1,2 +1,3 @@
 # ICalories
-Boone and Jacob
+Boone
+Jacob 
