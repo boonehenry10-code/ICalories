@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#123c78" />
+  <title>ICalories — Eat informed at IC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Changa+One&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" id="homeButton" aria-label="Go to home"><span class="brand-mark">IC</span><span>ICalories</span></button>
+      <div class="top-actions"><span class="today" id="todayLabel"></span><button class="icon-button" id="savedButton" aria-label="View saved foods" title="Saved foods">♡<span class="saved-count" id="savedCount">0</span></button><button class="avatar" id="profileButton" aria-label="Profile and reaction preferences" title="Profile · Reaction preferences">S</button></div>
+    </header>
+    <main id="app" aria-live="polite"></main>
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span><span>Home</span></button>
+      <button class="nav-item" data-view="explore"><span class="nav-icon">⌕</span><span>Explore</span></button>
+      <button class="nav-item" data-view="saved"><span class="nav-icon">♡</span><span>Saved</span></button>
+      <button class="nav-item" data-view="nutrition"><span class="nav-icon">✚</span><span>Nutrition</span></button>
+      <button class="nav-item" data-view="planner"><span class="nav-icon">▦</span><span>Meal plan</span></button>
+    </nav>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog class="dish-dialog" id="dishDialog" aria-labelledby="dishDialogTitle">
+    <div class="dish-dialog-head"><div><span class="eyebrow">Estimated nutrition</span><h2 id="dishDialogTitle">Dish</h2></div><button class="dialog-close" type="button" aria-label="Close nutrition details">×</button></div>
+    <div id="dishDialogBody"></div>
+  </dialog>
+  <dialog class="goal-dialog" id="goalDialog" aria-labelledby="goalDialogTitle">
+    <div class="dish-dialog-head"><div><span class="eyebrow">Personal setup</span><h2 id="goalDialogTitle">Make ICalories yours</h2></div><button class="dialog-close goal-close" type="button" aria-label="Close setup">×</button></div>
+    <form id="goalForm">
+      <p class="goal-intro">How would you like to use calorie goals?</p>
+      <label class="goal-choice"><input type="radio" name="goalChoice" value="yes"> Track a daily goal that I choose</label>
+      <label class="goal-choice"><input type="radio" name="goalChoice" value="no" checked> No, I’d like to plan without a calorie goal</label>
+      <label class="goal-input-label hidden" id="goalInputLabel">What daily calorie goal would you like to track?<span class="goal-input-wrap"><input id="goalInput" name="goal" type="number" step="any" inputmode="decimal" placeholder="Enter any positive number"><span>calories per day</span></span><small>Enter any positive number. There is no preset maximum.</small></label>
+      <p class="goal-disclaimer">ICalories will track the number you enter; it doesn’t determine whether that target is right for you. If you’re unsure, continue without a goal and consider asking a qualified health professional. You can change this setting any time.</p>
+      <div class="goal-actions"><button class="primary-button" type="submit">Save and continue</button><button class="text-button" type="button" id="skipGoal">Continue without a goal</button></div>
+    </form>
+  </dialog>
+  <dialog class="reaction-settings-dialog" id="reactionSettingsDialog" aria-labelledby="reactionSettingsTitle">
+    <div class="dish-dialog-head"><div><span class="eyebrow">Profile settings</span><h2 id="reactionSettingsTitle">Reaction preferences</h2></div><button class="reaction-settings-close" id="closeReactionSettings" type="button" aria-label="Close reaction preferences">×</button></div>
+    <section class="jumpscare-setting">
+      <div class="reaction-setting-head"><strong>Over-goal reaction</strong><span>Runs when adding a food crosses your goal.</span></div>
+      <label class="reaction-toggle"><input type="checkbox" id="jumpscareToggle"> Enable reaction <small>On by default · turn off any time</small></label>
+      <label class="reaction-field">Choose the announcement<select id="reactionPreset"><option value="check-in">Neutral: GOAL CHECK!</option><option value="fatty">Comedic: FATTY!</option><option value="custom">Write my own</option></select></label>
+      <label id="customReactionWrap" class="reaction-field hidden">Custom announcement<input id="customReaction" type="text" maxlength="50" placeholder="Type a short phrase"></label>
+      <label class="reaction-toggle"><input type="checkbox" id="reactionSpeech"> Speak the announcement</label>
+      <p>Your preferences are saved in this browser and apply to the existing Meal Plan trigger.</p>
+      <div class="reaction-actions"><button class="text-button" type="button" data-preview-jumpscare>Preview reaction</button></div>
+    </section>
+  </dialog>
+  <section class="jumpscare-screen" id="jumpscareScreen" hidden role="alertdialog" aria-modal="true" aria-labelledby="jumpscareTitle" aria-describedby="jumpscareHint">
+    <button class="jumpscare-close" id="closeJumpscare" type="button" aria-label="Dismiss effect">×</button>
+    <div class="jumpscare-content"><span id="jumpscareTitle">GOAL CHECK!</span><p id="jumpscareHint">Your planned total just crossed your personal goal.</p></div>
+  </section>
+  <script src="app.js"></script>
+</body>
+</html>
