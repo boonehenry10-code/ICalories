@@ -46,7 +46,7 @@
     <section class="jumpscare-setting">
       <div class="reaction-setting-head"><strong>Over-goal reaction</strong><span>Runs when adding a food crosses your goal.</span></div>
       <label class="reaction-toggle"><input type="checkbox" id="jumpscareToggle"> Enable reaction <small>On by default · turn off any time</small></label>
-      <label class="reaction-field">Choose the announcement<select id="reactionPreset"><option value="check-in">Neutral: GOAL CHECK!</option><option value="fatty">Comedic: FATTY!</option><option value="custom">Write my own</option></select></label>
+      <label class="reaction-field">Choose the announcement<select id="reactionPreset"><option value="fatty">Comedic: FATTY!</option><option value="check-in">Neutral: GOAL CHECK!</option><option value="custom">Write my own</option></select></label>
       <label id="customReactionWrap" class="reaction-field hidden">Custom announcement<input id="customReaction" type="text" maxlength="50" placeholder="Type a short phrase"></label>
       <label class="reaction-toggle"><input type="checkbox" id="reactionSpeech"> Speak the announcement</label>
       <p>Your preferences are saved in this browser and apply to the existing Meal Plan trigger.</p>
@@ -55,7 +55,7 @@
   </dialog>
   <section class="jumpscare-screen" id="jumpscareScreen" hidden role="alertdialog" aria-modal="true" aria-labelledby="jumpscareTitle" aria-describedby="jumpscareHint">
     <button class="jumpscare-close" id="closeJumpscare" type="button" aria-label="Dismiss effect">×</button>
-    <div class="jumpscare-content"><span id="jumpscareTitle">GOAL CHECK!</span><p id="jumpscareHint">Your planned total just crossed your personal goal.</p></div>
+    <div class="jumpscare-content"><span id="jumpscareTitle">FATTY!</span><p id="jumpscareHint">Your planned total just crossed your personal goal.</p></div>
   </section>
   <script src="app.js"></script>
 </body>
